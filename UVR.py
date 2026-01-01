@@ -2274,6 +2274,9 @@ class MainWindow(TkinterDnD.Tk if is_dnd_compatible else tk.Tk):
             for dir in DIRECTORIES:
                 for temp_file in os.listdir(dir):
                     if temp_file.endswith(EXTENSIONS):
+                        # Skip requirements.txt and other important files
+                        if temp_file == 'requirements.txt':
+                            continue
                         if os.path.isfile(os.path.join(dir, temp_file)):
                             os.remove(os.path.join(dir, temp_file))
         except Exception as e:
